@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>BibliotekaIcon.ico</ApplicationIcon>
+    <AssemblyName>Biblioteka</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\BibliotekaSplashScreen.png" />
+    <None Remove="Assets\Icons\add.png" />
+    <None Remove="Assets\Icons\author.png" />
+    <None Remove="Assets\Icons\delete.png" />
+    <None Remove="Assets\Icons\done.png" />
+    <None Remove="Assets\Icons\modify.png" />
+    <None Remove="Assets\Icons\reset.png" />
+    <None Remove="Assets\Icons\settings.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BibliotekaLib\BibliotekaLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Icons\add.png" />
+    <Resource Include="Assets\Icons\author.png" />
+    <Resource Include="Assets\Icons\delete.png" />
+    <Resource Include="Assets\Icons\done.png" />
+    <Resource Include="Assets\Icons\modify.png" />
+    <Resource Include="Assets\Icons\reset.png" />
+    <Resource Include="Assets\Icons\settings.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Assets\BibliotekaSplashScreen.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ManageGeneresWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="ManageGeneresWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

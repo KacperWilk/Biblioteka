@@ -1,0 +1,69 @@
+﻿<Window x:Class="BibliotekaApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BibliotekaApp"
+        mc:Ignorable="d"
+        Title="Biblioteka" Height="450" Width="800"
+        MinHeight="450" MinWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" x:Name="BooksDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" LoadingRow="BooksDataGridLoadingRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tytuł" IsReadOnly="True" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Autorzy" IsReadOnly="True" Binding="{Binding AuthorsToString}"/>
+                <DataGridTextColumn Header="Data zakupu" IsReadOnly="True" Binding="{Binding PurchaseDate, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Gatunek" IsReadOnly="True" Binding="{Binding Genere.GenereName}"/>
+                <DataGridTextColumn Header="Półka" IsReadOnly="True" Binding="{Binding Shelf.ShelfName}"/>
+                <DataGridTextColumn Header="Ilość przeczytań" IsReadOnly="True" Binding="{Binding ReadCount}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ReadButton" Click="ReadButtonClick" Width="24" Height="24">
+                                <Image Source="Assets/Icons/done.png" Stretch="Uniform"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ModifyButton" Click="ModifyButtonClick" Width="24" Height="24">
+                                <Image Source="Assets/Icons/modify.png" Stretch="Uniform"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="RemoveButton" Click="RemoveButtonClick" Width="24" Height="24">
+                                <Image Source="Assets/Icons/delete.png" Stretch="Uniform"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AddBookButton" Grid.Row="3" Grid.Column="1" Click="AddBookButtonClick" Height="24">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Image Source="Assets/Icons/add.png" Stretch="Uniform" VerticalAlignment="Center"/>
+                <TextBlock VerticalAlignment="Center">Dodaj książkę</TextBlock>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>
